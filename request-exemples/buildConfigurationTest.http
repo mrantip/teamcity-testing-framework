@@ -1,0 +1,76 @@
+
+### 1. Create project
+# @no-cookie-jar
+POST http://mrantip:4554447@172.19.160.1:8111/app/rest/projects
+Content-Type:application/json
+X-TC-CSRF-Token:2722ac6f-1935-475b-91e4-6db3e8ace0dc
+Accept: application/json
+
+{
+  "parentProject": {
+    "locator": "_ROOT"
+  },
+  "name": "name",
+  "id": "id",
+  "copyAllAssociatedSettings": true
+}
+
+### 2 Create Build Configuration
+# @no-cookie-jar
+POST http://mrantip:4554447@172.19.160.1:8111/app/rest/buildTypes
+Content-Type:application/json
+X-TC-CSRF-Token:2722ac6f-1935-475b-91e4-6db3e8ace0dc
+Accept: application/json
+
+{
+  "id": "id",
+  "name": "Print hello world",
+  "project": {
+    "id": "id"
+  },
+  "steps": {
+    "step": [
+      {
+        "name": "Print hello world",
+        "type": "simpleRunner",
+        "properties": {
+          "property": [
+            {
+              "name": "script.content",
+              "value": "echo 'Hello World!'"
+            },
+            {
+              "name": "teamcity.step.mode",
+              "value": "default"
+            },
+            {
+              "name": "use.custom.script",
+              "value": "true"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+
+### 3 Run build
+# @no-cookie-jar
+POST http://mrantip:4554447@172.19.160.1:8111/app/rest/buildQueue
+Content-Type:application/json
+X-TC-CSRF-Token:2722ac6f-1935-475b-91e4-6db3e8ace0dc
+Accept: application/json
+
+{
+  "buildType": {
+    "id": "id"
+  }
+}
+
+### 4 Check build status
+# @no-cookie-jar
+GET http://mrantip:4554447@172.19.160.1:8111/app/rest/builds/id:302
+Content-Type:application/json
+X-TC-CSRF-Token:2722ac6f-1935-475b-91e4-6db3e8ace0dc
+Accept: application/json
+
