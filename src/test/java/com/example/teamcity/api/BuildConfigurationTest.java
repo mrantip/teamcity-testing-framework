@@ -22,5 +22,6 @@ public class BuildConfigurationTest extends BaseApiTest{
                 .then().assertThat().statusCode(HttpStatus.SC_OK)
                 .extract().asString();
         System.out.println(token);
+
     }
 }
