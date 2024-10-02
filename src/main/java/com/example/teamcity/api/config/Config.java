@@ -33,7 +33,7 @@ public class Config {
         }
     }
 
-    public static String getPropertiy(String key) {
+    public static String getProperty(String key) {
         return getConfig().properties.getProperty(key);
     }
 }
