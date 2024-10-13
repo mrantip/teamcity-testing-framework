@@ -74,15 +74,15 @@ public class BuildTypeTest extends BaseApiTest{
     public void projectAdminCreatesBuildTypeForAnotherUserProjectTest() {
         superUserCheckRequests.getRequest(PROJECTS).create(testData.getProject());
         testData.getUser().setRoles(generate(Roles.class, "PROJECT_ADMIN", "p:" + testData.getProject().getId()));
-        var user1 = superUserCheckRequests.<User>getRequest(USERS).create(testData.getUser());
+        var userOne = superUserCheckRequests.<User>getRequest(USERS).create(testData.getUser());
 
-        Project project2 = generate(Project.class);
-        superUserCheckRequests.getRequest(PROJECTS).create(project2);
-        var user2 = generate(User.class);
-        user2.setRoles(generate(Roles.class, "PROJECT_ADMIN", "p:" + project2.getId()));
-        superUserCheckRequests.<User>getRequest(USERS).create(user2);
+        Project projectTwo = generate(Project.class);
+        superUserCheckRequests.getRequest(PROJECTS).create(projectTwo);
+        var userTwo = generate(User.class);
+        userTwo.setRoles(generate(Roles.class, "PROJECT_ADMIN", "p:" + projectTwo.getId()));
+        superUserCheckRequests.<User>getRequest(USERS).create(userTwo);
 
-        var userCheckRequests = new UncheckedRequests(Specifications.authSpec(user2));
+        var userCheckRequests = new UncheckedRequests(Specifications.authSpec(userTwo));
 
         userCheckRequests.getRequest(BUILD_TYPES).create(testData.getBuildType())
                 .then().assertThat().statusCode(HttpStatus.SC_FORBIDDEN)
