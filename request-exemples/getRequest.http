@@ -1,0 +1,3 @@
+GET http://mrantip:4554447@172.19.160.1:8111/app/rest/buildTypes/id:id
+Content-Type:application/json
+Accept: application/json
