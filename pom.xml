@@ -16,6 +16,7 @@
         <lombok.version>1.18.30</lombok.version>
         <allure.version>2.27.0</allure.version>
         <jackson.version>2.17.2</jackson.version>
+        <selenide.version>7.4.3</selenide.version>
     </properties>
 
     <dependencies>
@@ -72,6 +73,11 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${selenide.version}</version>
         </dependency>
     </dependencies>
 
