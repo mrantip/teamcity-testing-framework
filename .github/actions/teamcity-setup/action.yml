@@ -65,6 +65,10 @@ runs:
       shell: bash
       run: cat src/main/resources/config.properties
 
+    - name: Дать права на выполнение mvnw
+      shell: bash
+      run: chmod +x ./mvnw
+
     - name: Setup TeamCity server
       shell: bash
       # Настройка сервера при первом запуске (принятие лицензии, выбор базы данных и тд), реализованная в виде теста
