@@ -61,13 +61,17 @@ runs:
         -p 8111:8111 \
         jetbrains/teamcity-server:2023.11.1
 
+    - name: Дать права на выполнение mvnw
+      shell: bash
+      run: chmod +x ./mvnw
+
     - name: Cat config.properties
       shell: bash
       run: cat src/main/resources/config.properties
 
-    - name: Дать права на выполнение mvnw
+    - name: Set up superUserToken config property
       shell: bash
-      run: chmod +x ./mvnw
+      run: echo "superUserToken=$SUPER_USER_TOKEN" >> src/main/resources/config.properties
 
     - name: Setup TeamCity server
       shell: bash
